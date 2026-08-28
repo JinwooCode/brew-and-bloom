@@ -193,9 +193,68 @@
     }
     .js .reveal{opacity:1;transform:none}
   }
+
+  /* ---------- motion, part two ---------- */
+  .progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:50;pointer-events:none}
+  .progress span{
+    display:block;height:100%;background:var(--terracotta);
+    transform:scaleX(0);transform-origin:right;will-change:transform;
+  }
+
+  /* line icons draw themselves in */
+  .js .step-num svg path,.js .step-num svg circle{
+    stroke-dasharray:1;stroke-dashoffset:1;
+    transition:stroke-dashoffset 1.1s cubic-bezier(.22,.61,.36,1) .25s;
+  }
+  .js .step.in .step-num svg path,.js .step.in .step-num svg circle{stroke-dashoffset:0}
+
+  /* underline draws under each section heading */
+  .js .section-head h2{position:relative;padding-bottom:16px}
+  .js .section-head h2::after{
+    content:"";position:absolute;inset-inline-start:0;bottom:0;
+    height:2px;width:0;background:var(--terracotta);
+    transition:width .85s cubic-bezier(.22,.61,.36,1) .3s;
+  }
+  .js .section-head.in h2::after{width:56px}
+
+  /* hero photo settles from a slight overscale */
+  .js .hero-media img{transform:scale(1.07);transition:transform 1.5s cubic-bezier(.22,.61,.36,1)}
+  .js .hero-media.in img{transform:none}
+
+  /* light sweeps across the primary button on hover */
+  .btn-primary::before{
+    content:"";position:absolute;top:0;inset-inline-start:-70%;
+    width:45%;height:100%;transform:skewX(-18deg);
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+    transition:inset-inline-start .65s ease;
+  }
+  .btn-primary:hover::before{inset-inline-start:125%}
+
+  /* the CTA band breathes */
+  .cta-inner{
+    background:linear-gradient(135deg,var(--terracotta) 0%,#b3571e 50%,var(--terracotta) 100%);
+    background-size:200% 200%;animation:ctaShift 14s ease-in-out infinite;
+  }
+  @keyframes ctaShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+  /* price nudges up when you hover its card */
+  .price{transition:transform .3s cubic-bezier(.22,.61,.36,1),color .3s}
+  .card:hover .price{transform:translateY(-2px);color:var(--terracotta)}
+
+  .count{font-variant-numeric:tabular-nums}
+
+  @media (prefers-reduced-motion:reduce){
+    .cta-inner{animation:none}
+    .progress{display:none}
+    .js .step-num svg path,.js .step-num svg circle{stroke-dashoffset:0}
+    .js .section-head.in h2::after{width:56px;transition:none}
+    .js .hero-media img{transform:none}
+  }
 </style>
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"><span></span></div>
 
 <header>
   <div class="wrap nav">
@@ -225,7 +284,7 @@
       <div class="hero-media reveal" data-d="2">
         <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="קפה פוראובר בהכנה לצד פולים טריים מהקלייה">
         <div class="badge">
-          <strong>48 שעות</strong>
+          <strong><span class="count" data-to="48">48</span> שעות</strong>
           <span>מהקלייה ועד הדלת שלכם</span>
         </div>
       </div>
@@ -281,21 +340,21 @@
       <div class="steps">
         <div class="step reveal" data-d="1">
           <div class="step-num">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10z"/><circle pathLength="1" cx="12" cy="11" r="2.6"/></svg>
           </div>
           <h3>רכש ישיר</h3>
           <p>אנחנו קונים מקומץ חוות וקואופרטיבים שאנחנו מבקרים בכל עונה, ומשלמים מעל לרף הסחר ההוגן.</p>
         </div>
         <div class="step reveal" data-d="2">
           <div class="step-num">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h13a3 3 0 0 1 0 6h-1"/><path d="M4 10v6a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4"/><path d="M7 6c0-1 1-1.5 1-2.5M11 6c0-1 1-1.5 1-2.5"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M4 10h13a3 3 0 0 1 0 6h-1"/><path pathLength="1" d="M4 10v6a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4"/><path pathLength="1" d="M7 6c0-1 1-1.5 1-2.5M11 6c0-1 1-1.5 1-2.5"/></svg>
           </div>
           <h3>קלייה בבאצ'ים קטנים</h3>
           <p>שנים־עשר קילו בכל פעם על מקלה תוף משנת 1962, בפרופיל ידני וטעימת קאפינג לפני שממלאים שקית אחת.</p>
         </div>
         <div class="step reveal" data-d="3">
           <div class="step-num">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M3 7h11v9H3z"/><path pathLength="1" d="M14 10h4l3 3v3h-7z"/><circle pathLength="1" cx="7" cy="18" r="1.8"/><circle pathLength="1" cx="17" cy="18" r="1.8"/></svg>
           </div>
           <h3>משלוח תוך 24 שעות</h3>
           <p>ארוז בשקית עם שסתום חד־כיווני ונשלח באותו בוקר, כדי שיגיע למטחנה שלכם בשיא הטריות.</p>
@@ -352,6 +411,44 @@
       document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('in'); });
     });
   }
+
+
+  // scroll progress indicator
+  var bar = document.querySelector('.progress span');
+  if (bar && !reduce) {
+    var ticking = false;
+    var draw = function(){
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(window.scrollY / max, 1) : 0) + ')';
+      ticking = false;
+    };
+    window.addEventListener('scroll', function(){
+      if (!ticking) { ticking = true; requestAnimationFrame(draw); }
+    }, { passive: true });
+    draw();
+  }
+
+  // count the hero badge up when it appears
+  document.querySelectorAll('.count').forEach(function(el){
+    var to = parseInt(el.dataset.to, 10);
+    if (reduce || !('IntersectionObserver' in window)) { el.textContent = to; return; }
+    el.textContent = '0';
+    var seen = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        seen.unobserve(e.target);
+        var start = null, dur = 1100;
+        var tick = function(ts){
+          if (!start) start = ts;
+          var t = Math.min((ts - start) / dur, 1);
+          el.textContent = Math.round(to * (1 - Math.pow(1 - t, 3)));
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+    seen.observe(el);
+  });
 
   var header = document.querySelector('header');
   var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
