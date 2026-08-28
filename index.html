@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brew &amp; Bloom — Small-Batch Coffee Roastery</title>
+<meta name="description" content="Brew &amp; Bloom is a small-batch specialty coffee roastery. Single-origin beans, roasted the morning they ship.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF6F0;
+    --cream-deep:#F2EAE0;
+    --espresso:#2C1D14;
+    --muted:#6B5647;
+    --terracotta:#C1662F;
+    --terracotta-dark:#A5541F;
+    --line:#E4D9CB;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(44,29,20,.04), 0 12px 32px rgba(44,29,20,.07);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:-.015em}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:min(1140px,100% - 48px);margin-inline:auto}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(250,246,240,.82);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+  .wordmark{font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em}
+  .wordmark span{color:var(--terracotta)}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-links a{font-size:.95rem;color:var(--muted);font-weight:500;transition:color .18s}
+  .nav-links a:hover{color:var(--espresso)}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    font-family:Inter,sans-serif;font-size:.95rem;font-weight:600;
+    padding:12px 26px;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;
+  }
+  .btn-primary{background:var(--terracotta);color:#fff;box-shadow:0 6px 18px rgba(193,102,47,.24)}
+  .btn-primary:hover{background:var(--terracotta-dark);transform:translateY(-1px)}
+  .btn-sm{padding:9px 20px;font-size:.9rem}
+  .btn-lg{padding:16px 38px;font-size:1.02rem}
+
+  /* ---------- hero ---------- */
+  .hero{padding:88px 0 96px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .eyebrow{
+    display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--terracotta);
+    background:rgba(193,102,47,.09);padding:7px 14px;border-radius:999px;margin-bottom:24px;
+  }
+  .hero h1{font-size:clamp(2.5rem,4.6vw,3.9rem)}
+  .hero p.lede{margin-top:22px;font-size:1.14rem;color:var(--muted);max-width:30em}
+  .hero-actions{display:flex;align-items:center;gap:14px;margin-top:36px;flex-wrap:wrap}
+  .link-arrow{font-weight:600;font-size:.98rem;color:var(--espresso);border-bottom:1.5px solid var(--terracotta);padding-bottom:2px}
+  .hero-media{position:relative}
+  .hero-media img{
+    border-radius:24px;aspect-ratio:4/5;object-fit:cover;
+    box-shadow:var(--shadow);
+  }
+  .badge{
+    position:absolute;left:-26px;bottom:36px;background:#fff;
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px 22px;box-shadow:var(--shadow);
+  }
+  .badge strong{display:block;font-family:Fraunces,serif;font-size:1.5rem;line-height:1}
+  .badge span{font-size:.82rem;color:var(--muted)}
+
+  /* ---------- sections ---------- */
+  section{scroll-margin-top:80px}
+  .section{padding:96px 0}
+  .section-head{max-width:36em;margin-bottom:52px}
+  .section-head h2{font-size:clamp(2rem,3.2vw,2.6rem)}
+  .section-head p{margin-top:16px;color:var(--muted);font-size:1.06rem}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(44,29,20,.05),0 20px 44px rgba(44,29,20,.10)}
+  .card img{aspect-ratio:3/2;object-fit:cover}
+  .card-body{padding:26px}
+  .card h3{font-size:1.3rem}
+  .origin{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:10px}
+  .notes{margin-top:10px;color:var(--muted);font-size:.97rem}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+  .price{font-family:Fraunces,serif;font-size:1.22rem;font-weight:600}
+  .price small{font-family:Inter,sans-serif;font-size:.85rem;font-weight:400;color:var(--muted)}
+
+  .process{background:var(--cream-deep)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+  .step-num{
+    width:52px;height:52px;border-radius:14px;background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:var(--terracotta);
+  }
+  .step h3{font-size:1.2rem;margin-bottom:10px}
+  .step p{color:var(--muted);font-size:1rem}
+
+  /* ---------- cta ---------- */
+  .cta{padding:88px 0}
+  .cta-inner{
+    background:var(--terracotta);color:#fff;border-radius:28px;
+    padding:72px 48px;text-align:center;
+    box-shadow:0 24px 60px rgba(193,102,47,.26);
+  }
+  .cta-inner h2{font-size:clamp(2rem,3.4vw,2.8rem);color:#fff}
+  .cta-inner p{margin:18px auto 34px;max-width:34em;color:rgba(255,255,255,.9);font-size:1.08rem}
+  .btn-oncolor{background:#fff;color:var(--terracotta)}
+  .btn-oncolor:hover{background:var(--cream);transform:translateY(-1px)}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot address{font-style:normal;color:var(--muted);font-size:.94rem}
+  .socials{display:flex;gap:26px}
+  .socials a{color:var(--muted);font-size:.94rem;font-weight:500;transition:color .18s}
+  .socials a:hover{color:var(--terracotta)}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .badge{left:16px}
+    .cards,.steps{grid-template-columns:1fr}
+    .nav-links a:not(.btn){display:none}
+    .section,.hero{padding:64px 0}
+    .cta-inner{padding:52px 26px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="wordmark">Brew &amp; Bloom<span>.</span></div>
+    <nav class="nav-links">
+      <a href="#coffee">Our Coffee</a>
+      <a href="#process">Process</a>
+      <a href="#visit">Visit</a>
+      <a href="#subscribe" class="btn btn-primary btn-sm">Order Beans</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Roasted in Tel Aviv</span>
+        <h1>Small-batch coffee, roasted the morning it ships</h1>
+        <p class="lede">Single-origin beans bought straight from the farms that grow them, roasted in twelve-kilo batches and out the door before the day warms up.</p>
+        <div class="hero-actions">
+          <a href="#subscribe" class="btn btn-primary btn-lg">Order Beans</a>
+          <a href="#coffee" class="link-arrow">See our roasts &rarr;</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Pour-over coffee being brewed beside freshly roasted beans">
+        <div class="badge">
+          <strong>48h</strong>
+          <span>from roast to your door</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Coffee -->
+  <section class="section" id="coffee">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Three roasts, chosen carefully</h2>
+        <p>We keep the menu short on purpose. Each lot is tasted, scored and re-ordered only if it earns its place.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Cup of light-roast Ethiopian coffee">
+          <div class="card-body">
+            <div class="origin">Ethiopia</div>
+            <h3>Ethiopia Guji</h3>
+            <p class="notes">Bright and floral — jasmine, stone fruit and a clean citrus finish. Our lightest roast.</p>
+            <div class="price-row"><span class="price">$18 <small>/ 250g</small></span><span class="link-arrow">Add</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Roasted Colombian coffee beans">
+          <div class="card-body">
+            <div class="origin">Colombia</div>
+            <h3>Colombia Huila</h3>
+            <p class="notes">Caramel and cocoa with a round, syrupy body. The everyday cup, at home in milk or black.</p>
+            <div class="price-row"><span class="price">$18 <small>/ 250g</small></span><span class="link-arrow">Add</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Dark roasted Sumatran coffee beans">
+          <div class="card-body">
+            <div class="origin">Indonesia</div>
+            <h3>Sumatra Lintong</h3>
+            <p class="notes">Earthy and bold — dark chocolate, cedar and tobacco. Built for espresso and cold brew.</p>
+            <div class="price-row"><span class="price">$18 <small>/ 250g</small></span><span class="link-arrow">Add</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section process" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How it gets to you</h2>
+        <p>No warehouses, no middlemen, no beans sitting on a shelf for six months.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg>
+          </div>
+          <h3>Sourced directly</h3>
+          <p>We buy from a handful of farms and co-ops we visit each season, and we pay above the fair-trade floor.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h13a3 3 0 0 1 0 6h-1"/><path d="M4 10v6a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4"/><path d="M7 6c0-1 1-1.5 1-2.5M11 6c0-1 1-1.5 1-2.5"/></svg>
+          </div>
+          <h3>Roasted in small batches</h3>
+          <p>Twelve kilos at a time on a 1962 drum roaster, profiled by hand and cupped before a single bag is filled.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>
+          </div>
+          <h3>Shipped within 24 hours</h3>
+          <p>Bagged with a one-way valve and posted the same morning, so it reaches your grinder at peak freshness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="subscribe">
+    <div class="wrap">
+      <div class="cta-inner">
+        <h2>Fresh beans, every two weeks</h2>
+        <p>Pick a roast, pick a grind, and we send 250g every other Tuesday. Skip, swap or cancel any time — no lock-in.</p>
+        <a href="#subscribe" class="btn btn-oncolor btn-lg">Start a Subscription</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="visit">
+  <div class="wrap foot">
+    <div class="wordmark">Brew &amp; Bloom<span>.</span></div>
+    <address>14 Ha&rsquo;Arba&rsquo;a St, Tel Aviv &middot; Open daily 7:00&ndash;17:00</address>
+    <div class="socials">
+      <a href="#visit">Instagram</a>
+      <a href="#visit">Newsletter</a>
+      <a href="#visit">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
