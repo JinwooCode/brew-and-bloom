@@ -147,6 +147,52 @@
     .section,.hero{padding:64px 0}
     .cta-inner{padding:52px 26px}
   }
+
+  /* ---------- motion ---------- */
+  .js .reveal{
+    opacity:0;transform:translateY(20px);
+    transition:opacity .75s cubic-bezier(.22,.61,.36,1),transform .75s cubic-bezier(.22,.61,.36,1);
+  }
+  .js .reveal.in{opacity:1;transform:none}
+  .js .reveal[data-d="1"]{transition-delay:.09s}
+  .js .reveal[data-d="2"]{transition-delay:.18s}
+  .js .reveal[data-d="3"]{transition-delay:.27s}
+  .js .reveal[data-d="4"]{transition-delay:.36s}
+
+  header{transition:box-shadow .3s,background .3s}
+  header.scrolled{box-shadow:0 4px 20px rgba(44,29,20,.06)}
+
+  .nav-links a:not(.btn){position:relative}
+  .nav-links a:not(.btn)::after{
+    content:"";position:absolute;inset-inline-start:0;bottom:-5px;
+    width:100%;height:1.5px;background:var(--terracotta);
+    transform:scaleX(0);transform-origin:right;
+    transition:transform .32s cubic-bezier(.22,.61,.36,1);
+  }
+  .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
+
+  .card img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+  .card:hover img{transform:scale(1.045)}
+
+  .step-num{transition:transform .3s,border-color .3s,color .3s}
+  .step:hover .step-num{transform:translateY(-3px);border-color:var(--terracotta)}
+
+  .badge{animation:float 5.5s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+  .link-arrow{transition:color .2s,border-color .2s}
+  .link-arrow:hover{color:var(--terracotta)}
+
+  .btn-primary,.btn-oncolor{position:relative;overflow:hidden}
+  .btn-primary:active,.btn-oncolor:active{transform:translateY(1px)}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;scroll-behavior:auto !important;
+    }
+    .js .reveal{opacity:1;transform:none}
+  }
 </style>
 </head>
 <body>
@@ -168,15 +214,15 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">נקלה בתל אביב</span>
-        <h1>קפה בבאצ'ים קטנים, נקלה בבוקר שבו הוא נשלח</h1>
-        <p class="lede">פולי סינגל-אוריג'ין שנרכשים ישירות מהחוות שמגדלות אותם, נקלים במנות של שנים־עשר קילו ויוצאים לדרך לפני שהיום מתחמם.</p>
-        <div class="hero-actions">
+        <span class="eyebrow reveal">נקלה בתל אביב</span>
+        <h1 class="reveal" data-d="1">קפה בבאצ'ים קטנים, נקלה בבוקר שבו הוא נשלח</h1>
+        <p class="lede reveal" data-d="2">פולי סינגל-אוריג'ין שנרכשים ישירות מהחוות שמגדלות אותם, נקלים במנות של שנים־עשר קילו ויוצאים לדרך לפני שהיום מתחמם.</p>
+        <div class="hero-actions reveal" data-d="3">
           <a href="#subscribe" class="btn btn-primary btn-lg">הזמנת פולים</a>
           <a href="#coffee" class="link-arrow">לצפייה בקליות &larr;</a>
         </div>
       </div>
-      <div class="hero-media">
+      <div class="hero-media reveal" data-d="2">
         <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="קפה פוראובר בהכנה לצד פולים טריים מהקלייה">
         <div class="badge">
           <strong>48 שעות</strong>
@@ -189,12 +235,12 @@
   <!-- Our Coffee -->
   <section class="section" id="coffee">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>שלוש קליות, נבחרות בקפידה</h2>
         <p>אנחנו שומרים על תפריט קצר בכוונה. כל מנה נטעמת, מקבלת ניקוד, ומוזמנת שוב רק אם היא ראויה למקומה.</p>
       </div>
       <div class="cards">
-        <article class="card">
+        <article class="card reveal" data-d="1">
           <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="ספל קפה אתיופי בקלייה בהירה">
           <div class="card-body">
             <div class="origin">אתיופיה</div>
@@ -203,7 +249,7 @@
             <div class="price-row"><span class="price"><bdi>$18</bdi> <small>/ 250 גרם</small></span><span class="link-arrow">הוספה</span></div>
           </div>
         </article>
-        <article class="card">
+        <article class="card reveal" data-d="2">
           <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="פולי קפה קולומביאני קלויים">
           <div class="card-body">
             <div class="origin">קולומביה</div>
@@ -212,7 +258,7 @@
             <div class="price-row"><span class="price"><bdi>$18</bdi> <small>/ 250 גרם</small></span><span class="link-arrow">הוספה</span></div>
           </div>
         </article>
-        <article class="card">
+        <article class="card reveal" data-d="3">
           <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="פולי קפה מסומטרה בקלייה כהה">
           <div class="card-body">
             <div class="origin">אינדונזיה</div>
@@ -228,26 +274,26 @@
   <!-- Process -->
   <section class="section process" id="process">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>איך זה מגיע אליכם</h2>
         <p>בלי מחסנים, בלי מתווכים, ובלי פולים שיושבים על מדף חצי שנה.</p>
       </div>
       <div class="steps">
-        <div class="step">
+        <div class="step reveal" data-d="1">
           <div class="step-num">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg>
           </div>
           <h3>רכש ישיר</h3>
           <p>אנחנו קונים מקומץ חוות וקואופרטיבים שאנחנו מבקרים בכל עונה, ומשלמים מעל לרף הסחר ההוגן.</p>
         </div>
-        <div class="step">
+        <div class="step reveal" data-d="2">
           <div class="step-num">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h13a3 3 0 0 1 0 6h-1"/><path d="M4 10v6a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4"/><path d="M7 6c0-1 1-1.5 1-2.5M11 6c0-1 1-1.5 1-2.5"/></svg>
           </div>
           <h3>קלייה בבאצ'ים קטנים</h3>
           <p>שנים־עשר קילו בכל פעם על מקלה תוף משנת 1962, בפרופיל ידני וטעימת קאפינג לפני שממלאים שקית אחת.</p>
         </div>
-        <div class="step">
+        <div class="step reveal" data-d="3">
           <div class="step-num">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>
           </div>
@@ -261,7 +307,7 @@
   <!-- CTA -->
   <section class="cta" id="subscribe">
     <div class="wrap">
-      <div class="cta-inner">
+      <div class="cta-inner reveal">
         <h2>פולים טריים, כל שבועיים</h2>
         <p>בוחרים קלייה, בוחרים טחינה, ואנחנו שולחים 250 גרם אחת לשבועיים, בימי שלישי. אפשר לדלג, להחליף או לבטל בכל רגע — בלי התחייבות.</p>
         <a href="#subscribe" class="btn btn-oncolor btn-lg">התחלת מנוי</a>
@@ -282,5 +328,36 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var root = document.documentElement;
+  root.classList.add('js');
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    for (var i = 0; i < items.length; i++) items[i].classList.add('in');
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function(el){ io.observe(el); });
+
+    // hero enters on load rather than waiting for a scroll
+    requestAnimationFrame(function(){
+      document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('in'); });
+    });
+  }
+
+  var header = document.querySelector('header');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>
